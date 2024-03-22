@@ -1,16 +1,19 @@
-# Inherit full common Lineage stuff
-$(call inherit-product, vendor/lineage/config/common_full.mk)
+# Telephony
 
-# Required packages
+IS_PHONE := true
+
+# World APN list
 PRODUCT_PACKAGES += \
-    LatinIME
+    apns-conf.xml
 
-# Include Lineage LatinIME dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/lineage/overlay/dictionaries
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/lineage/overlay/dictionaries
+# Telephony packages
+PRODUCT_PACKAGES += \
+    Stk
 
-# Enable support of one-handed mode
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.support_one_handed_mode?=true
+# Tethering - allow without requiring a provisioning app
+# (for devices that check this)
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    net.tethering.noprovisioning=true
 
-$(call inherit-product, vendor/lineage/config/telephony.mk)
+# Inherit full common HZ stuff
+$(call inherit-product, vendor/hz/config/common_full.mk)
