@@ -48,6 +48,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 endif
 endif
 
+# Bootanimation
+$(call inherit-product, vendor/hz/config/bootanimation.mk)
+
 # Build
 ifeq ($(HZ_VANILLA), true)
 WITH_GMS :=  false
